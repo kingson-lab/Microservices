@@ -9,9 +9,9 @@ namespace CategoryService.Service
     public interface ICategoryService
     {
         Category CreateCategory(Category category);
-        bool DeleteCategory(int categoryId);
-        bool UpdateCategory(int categoryId, Category category);
-        Category GetCategoryById(int categoryId);
+        bool DeleteCategory(string categoryId);
+        bool UpdateCategory(string categoryId, Category category);
+        Category GetCategoryById(string categoryId);
         List<Category> GetAllCategoriesByUserId(string userId);
     }
 }
