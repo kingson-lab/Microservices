@@ -22,6 +22,9 @@ namespace CategoryService
         public void ConfigureServices(IServiceCollection services)
         {
             //register all dependecies here
+            services.AddScoped<CategoryContext>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryService, Service.CategoryService>();
             //Implement token validation logic
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -34,7 +37,12 @@ namespace CategoryService
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Category}/{action=Get}/{id?}");
+            });
         }
     }
 }
